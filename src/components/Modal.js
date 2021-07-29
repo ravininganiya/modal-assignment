@@ -1,21 +1,22 @@
 import React from "react";
-
+import ReactDOM from "react-dom";
 const Modal = (props) => {
-  return (
+  return ReactDOM.createPortal(
     <>
       <div className="modal" onClick={props.onClose}>
         <div className="modal_content" onClick={(e) => e.stopPropagation()}>
-          <div className="modal_header">
+          <header className="modal_header">
             <span>{props.title}</span>
             <span onClick={props.onClose}>x</span>
-          </div>
-          <div className="modal_body">{props.children}</div>
-          <div className="modal_footer">
+          </header>
+          <section className="modal_body">{props.children}</section>
+          <footer className="modal_footer">
             <button onClick={props.onClose}>close</button>
-          </div>
+          </footer>
         </div>
       </div>
-    </>
+    </>,
+    document.getElementById("custom_modal")
   );
 };
 
